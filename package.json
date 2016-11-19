@@ -1,0 +1,29 @@
+{
+  "name": "hackysakk",
+  "version": "1.0.0",
+  "description": "hack the stacks time machine interactive game",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HackTheStacks/HackySakk.git"
+  },
+  "author": "sakk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HackTheStacks/HackySakk/issues"
+  },
+  "homepage": "https://github.com/HackTheStacks/HackySakk#readme",
+  "dependencies": {
+    "grunt": "~0.4.1",
+    "grunt-autoprefixer": "~2.2.0",
+    "grunt-contrib-connect": "~0.6.0",
+    "grunt-contrib-watch": "git://github.com/gruntjs/grunt-contrib-watch.git#b884948805940c663b1cbb91a3c28ba8afdebf78",
+    "jquery": "^3.1.1",
+    "load-grunt-tasks": "~0.2.0",
+    "three": "^0.82.1",
+    "time-grunt": "^1.4.0"
+  }
+}
