@@ -13,7 +13,6 @@ module.exports = function(grunt) {
     webpack: {
       options: webpackConfig,
       "build-dev": {
-        devtool: "sourcemap",
         debug: true
       }
     },
