@@ -13,20 +13,22 @@ window.addEventListener('DOMContentLoaded', function(){
         var scene = new babylon.Scene(engine);
 
         // create a FreeCamera, and set its position to (x:0, y:5, z:-10)
-        var camera = new babylon.FreeCamera('camera1', new babylon.Vector3(0, 5,-10), scene);
+        // var camera = new babylon.FreeCamera('camera1', new babylon.Vector3(0, 5,-10), scene);
 
+	      var camera = new babylon.ArcRotateCamera("Camera", 3 * Math.PI / 2, Math.PI / 8, 50, babylon.Vector3.Zero(), scene);
         // target the camera to scene origin
-        camera.setTarget(babylon.Vector3.Zero());
+        // camera.setTarget(babylon.Vector3.Zero());
 
         // attach the camera to the canvas
-        camera.attachControl(canvas, false);
+        camera.attachControl(canvas, true);
 
         // create a basic light, aiming 0,1,0 - meaning, to the sky
         var light = new babylon.HemisphericLight('light1', new babylon.Vector3(0,1,0), scene);
 
         var box = babylon.Mesh.CreateBox("box", 2.0, scene, false, babylon.Mesh.DEFAULTSIDE);
-        var plane = babylon.Mesh.CreatePlane("plane", 5.0, scene, false, babylon.Mesh.DEFAULTSIDE);
-        plane.position = new babylon.Vector3(0,3,0);
+        
+        var backWall = babylon.Mesh.CreatePlane("backWall", 5.0, scene, false, babylon.Mesh.DEFAULTSIDE);
+        backWall.position = new babylon.Vector3(0,3,1);
 
         // Tiled Ground Tutorial
 
