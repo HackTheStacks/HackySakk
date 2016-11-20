@@ -23,8 +23,9 @@ window.addEventListener('DOMContentLoaded', function(){
         camera.attachControl(canvas, true);
 
         // create a basic light, aiming 0,1,0 - meaning, to the sky
-        var light = new babylon.HemisphericLight('light1', new babylon.Vector3(0,1,0), scene);
-
+        var light = new babylon.HemisphericLight('light1', new babylon.Vector3(3,1,0), scene);
+        var light3 = new babylon.HemisphericLight('light3', new babylon.Vector3(0,1,3), scene);
+        light.intensity = 0.7;
         var box = babylon.Mesh.CreateBox("box", 2.0, scene, false, babylon.Mesh.DEFAULTSIDE);
         box.position = new babylon.Vector3(0,1,0);
         
@@ -81,15 +82,15 @@ window.addEventListener('DOMContentLoaded', function(){
 
 
         //create walls
-         var backWall = babylon.Mesh.CreatePlane("backWall", 6, scene, false, babylon.Mesh.DEFAULTSIDE);
+         var backWall = babylon.Mesh.CreatePlane("backWall", 6, scene, false, babylon.Mesh.DOUBLESIDE);
         backWall.position = new babylon.Vector3(0,3,3);
 
-        var rightWall = babylon.Mesh.CreatePlane("rightWall", 6, scene, false, babylon.Mesh.DEFAULTSIDE);
+        var rightWall = babylon.Mesh.CreatePlane("rightWall", 6, scene, false, babylon.Mesh.DOUBLESIDE);
         rightWall.position = new babylon.Vector3(3,3,0);
         rightWall.rotation.y = Math.PI/2;
         
 
-        var leftWall = babylon.Mesh.CreatePlane("leftWall", 6, scene, false, babylon.Mesh.DEFAULTSIDE);
+        var leftWall = babylon.Mesh.CreatePlane("leftWall", 6, scene, false, babylon.Mesh.DOUBLESIDE);
         leftWall.position = new babylon.Vector3(-3,3,0);
         leftWall.rotation.y = Math.PI/2;
         //create wall material
