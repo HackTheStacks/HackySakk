@@ -34,22 +34,9 @@ window.addEventListener('DOMContentLoaded', function(){
         var knot = babylon.Mesh.CreateTorusKnot("knot", 2, 0.5, 128, 64, 2, 3, scene);
         knot.position = new babylon.Vector3(5,3,5);
 
-        // Part 1 : Creation of Tiled Ground
-        // Parameters
-        var xmin = -10;
-        var zmin = -10;
-        var xmax =  10;
-        var zmax =  10;
-        var precision = {
-            "w" : 2,
-            "h" : 2
-        };
-        var subdivisions = {
-            'h' : 8,
-            'w' : 8
-        };
+     
 
-        var tiledGround = new babylon.Mesh.CreateGround("Tiled Ground", 20, 20, 1, scene);
+        var tiledGround = new babylon.Mesh.CreateGround("Tiled Ground", 40, 20, 1, scene);
 
 
         // Part 2 : Create texture material for ground
@@ -57,21 +44,21 @@ window.addEventListener('DOMContentLoaded', function(){
         var groundMaterial = new babylon.StandardMaterial('marble floor', scene);
         var marbleTexture = new babylon.Texture("images/marble_texture.jpg",scene);
         groundMaterial.diffuseTexture = marbleTexture;
-        // groundMaterial.diffuseTexture.uScale = 5.0;
-        // groundMaterial.diffuseTexture.vScale = 5.0;
         tiledGround.material = groundMaterial;
         tiledGround.backFaceCulling = false;
 
         //create walls
-         var backWall = babylon.Mesh.CreatePlane("backWall", 20, scene, false, babylon.Mesh.DOUBLESIDE);
+        //  var backWall = babylon.Mesh.CreatePlane("backWall", 40, scene, false, babylon.Mesh.DOUBLESIDE);
+        //{ size: number, width: number, height: number, sideOrientation: number, updatable: boolean, sourcePlane: Plane }
+         var backWall = babylon.MeshBuilder.CreatePlane("backWall", { width: 40, height: 20, sideOrientation: babylon.Mesh.DOUBLESIDE }, scene);
         backWall.position = new babylon.Vector3(0,10,10);
 
         var rightWall = babylon.Mesh.CreatePlane("rightWall", 20, scene, false, babylon.Mesh.DOUBLESIDE);
-        rightWall.position = new babylon.Vector3(10,10,0);
+        rightWall.position = new babylon.Vector3(20,10,0);
         rightWall.rotation.y = Math.PI/2;
 
         var leftWall = babylon.Mesh.CreatePlane("leftWall", 20, scene, false, babylon.Mesh.DOUBLESIDE);
-        leftWall.position = new babylon.Vector3(-10,10,0);
+        leftWall.position = new babylon.Vector3(-20,10,0);
         leftWall.rotation.y = Math.PI/2;
         //create wall material
         var blueMaterial = new babylon.StandardMaterial("blueWalls", scene);
