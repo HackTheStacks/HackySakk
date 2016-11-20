@@ -1,4 +1,5 @@
 import babylon from 'babylonjs';
+import popup from './popup.js';
 
 class artifact {
 
@@ -19,9 +20,10 @@ class artifact {
     static prepareClick(artifact, trigger, scene){
         artifact.actionManager = new babylon.ActionManager(scene);
         artifact.actionManager.registerAction(new babylon.ExecuteCodeAction({ trigger: trigger, parameter: artifact},
-            function () {
-                alert('you did the thing! we are so proud of you');
-            }));
+        function () {
+                popup.showPopup();
+                popup.closePopup();
+        }));
     }
 
 
