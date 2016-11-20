@@ -25,6 +25,8 @@ window.addEventListener('DOMContentLoaded', function(){
         var light = new babylon.HemisphericLight('light1', new babylon.Vector3(0,1,0), scene);
 
         var box = babylon.Mesh.CreateBox("box", 2.0, scene, false, babylon.Mesh.DEFAULTSIDE);
+        var plane = babylon.Mesh.CreatePlane("plane", 5.0, scene, false, babylon.Mesh.DEFAULTSIDE);
+        plane.position = new babylon.Vector3(0,3,0);
 
 
         // Tiled Ground Tutorial
