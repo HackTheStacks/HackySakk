@@ -28,7 +28,7 @@ class Scene{
         var tiledGround = new babylon.Mesh.CreateGround("Tiled Ground", 40, 20, 1, scene);
 
         const groundMaterial = new babylon.StandardMaterial('marble floor', scene);
-        const marbleTexture = new babylon.Texture("images/marble_texture.jpg",scene);
+        const marbleTexture = new babylon.Texture("textures/marble_texture2.jpg",scene);
         groundMaterial.diffuseTexture = marbleTexture;
         tiledGround.material = groundMaterial;
         tiledGround.backFaceCulling = false;
@@ -45,7 +45,7 @@ class Scene{
         leftWall.rotation.y = Math.PI/2;
 
         const museumWallpaper = new babylon.StandardMaterial("museumWallpaper", scene);
-        museumWallpaper.diffuseTexture = new babylon.Texture("images/museum-wall.jpg", scene);
+        museumWallpaper.diffuseTexture = new babylon.Texture("textures/museum-wall-no-bottom.jpg", scene);
         museumWallpaper.diffuseTexture.uOffset = 1.5;
         museumWallpaper.diffuseTexture.vOffset = 5.0;
         museumWallpaper.backFaceCulling = false;
@@ -54,16 +54,15 @@ class Scene{
         leftWall.material = museumWallpaper;
         backWall.material = museumWallpaper;
 
-        const leftPaintingOnBackWall = this.createWall("painting", 5.25, 4.0, scene);
-        const leftPaintingOnRightWall = this.createWall("painting", 3.25, 4.0, scene);
+        const leftPaintingOnBackWall = this.createWall("painting", 5.5, 4.5, scene);
+        const leftPaintingOnRightWall = this.createWall("painting", 3.25, 5.0, scene);
 
-        leftPaintingOnBackWall.position = new babylon.Vector3(-7,10.5,9);
-
+        leftPaintingOnBackWall.position = new babylon.Vector3(-6.8,8.25,9);
         // x, y, z
-        leftPaintingOnRightWall.position = new babylon.Vector3(19,10.8,3.5);
+        leftPaintingOnRightWall.position = new babylon.Vector3(19,8.5,3.5);
         leftPaintingOnRightWall.rotation.y = Math.PI/2;
 
-        const rightPaintingOnBackWall = artifact.addNew("drum artifact painting", 4, 5.5, 6.3, 10.7, 9.5, 'click', scene);
+        const rightPaintingOnBackWall = artifact.addNew("drum artifact painting", 4, 5.5, 6.3, 8, 9.5, 'click', scene);
 
         const drumPainting = new babylon.StandardMaterial('South American drum', scene);
         const drumFlatTexture = new babylon.Texture("images/southAmericanDrum.jpg",scene);
