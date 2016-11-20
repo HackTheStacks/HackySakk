@@ -75,7 +75,7 @@ class Scene{
         displayCasePainting.diffuseTexture = displayCaseTexture;
         leftPaintingOnRightWall.material = displayCasePainting;
 
-        const hoverableArtifact = artifact.addNew("hoverable", 7, 5, -19.5, 12, 'hover', scene);
+        const hoverableArtifact = artifact.addNew("hoverable", 3.25, 4.0, -19.5, 12, 'hover', scene);
         hoverableArtifact.rotation.y = Math.PI/2;
 
         return scene;
