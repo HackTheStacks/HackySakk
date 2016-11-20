@@ -17,7 +17,7 @@ window.addEventListener('DOMContentLoaded', function(){
 
 	      var camera = new babylon.ArcRotateCamera("Camera", 3 * Math.PI / 2, Math.PI / 8, 50, babylon.Vector3.Zero(), scene);
         // target the camera to scene origin
-        // camera.setTarget(babylon.Vector3.Zero());
+        camera.setTarget(babylon.Vector3.Zero());
 
         // attach the camera to the canvas
         camera.attachControl(canvas, true);
@@ -26,11 +26,13 @@ window.addEventListener('DOMContentLoaded', function(){
         var light = new babylon.HemisphericLight('light1', new babylon.Vector3(0,1,0), scene);
 
         var box = babylon.Mesh.CreateBox("box", 2.0, scene, false, babylon.Mesh.DEFAULTSIDE);
-        
-        var backWall = babylon.Mesh.CreatePlane("backWall", 5.0, scene, false, babylon.Mesh.DEFAULTSIDE);
-        backWall.position = new babylon.Vector3(0,3,1);
+        box.position = new babylon.Vector3(0,1,0);
+        var backWall = babylon.Mesh.CreatePlane("backWall", 6, scene, false, babylon.Mesh.DEFAULTSIDE);
+        backWall.position = new babylon.Vector3(0,3,3);
 
-        // Tiled Ground Tutorial
+        var rightWall = babylon.Mesh.CreatePlane("rightWall", 6, scene, false, babylon.Mesh.DEFAULTSIDE);
+        rightWall.position = new babylon.Vector3(3,3,0);
+        rightWall.rotation.y = Math.PI/2;
 
         // Part 1 : Creation of Tiled Ground
         // Parameters
