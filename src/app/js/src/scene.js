@@ -1,3 +1,4 @@
+import artifact from './artifact.js'
 import babylon from 'babylonjs';
 class Scene{
     static createScene(engine, canvas){
@@ -76,6 +77,11 @@ class Scene{
         rightPaintingOnBackWall.material = drumPainting;
 
         this.prepareClick(rightPaintingOnBackWall, scene);
+        
+        const hoverableArtifact = artifact.addNew("hoverable", 7, 12, -11, 12, scene);
+
+        const painting = artifact.addNew("paiting", 5.25, 4.0, 6.3, 10.5, scene);
+
 
         return scene;
     }
@@ -85,4 +91,4 @@ class Scene{
 
  
 }
-module.exports= Scene;
+module.exports = Scene;
