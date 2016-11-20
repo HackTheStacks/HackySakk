@@ -21,12 +21,12 @@ class Scene{
 
         //create box
         const box = babylon.Mesh.CreateBox("box", 4.0, scene, false, babylon.Mesh.DEFAULTSIDE);
-        box.position = new babylon.Vector3(0,2,0);
+        box.position = new babylon.Vector3(-4,2,-4);
 
         const knot = babylon.Mesh.CreateTorusKnot("knot", 2, 0.5, 128, 64, 2, 3, scene);
         knot.position = new babylon.Vector3(5,3,5);
 
-     
+
 
         var tiledGround = new babylon.Mesh.CreateGround("Tiled Ground", 40, 20, 1, scene);
 
