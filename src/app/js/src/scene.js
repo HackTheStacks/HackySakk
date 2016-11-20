@@ -69,6 +69,8 @@ class Scene{
         leftPaintingOnRightWall.rotation.y = Math.PI/2;
 
 
+        const rightPaintingOnBackWall = artifact.addNew("drum artifact painting", 5.25, 4.0, 6.3, 13.5, 'click', scene);
+
         const drumPainting = new babylon.StandardMaterial('South American drum', scene);
         const drumFlatTexture = new babylon.Texture("images/southAmericanDrum.jpg",scene);
         drumPainting.diffuseTexture = drumFlatTexture;
