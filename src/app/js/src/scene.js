@@ -62,13 +62,18 @@ class Scene{
         leftPaintingOnRightWall.position = new babylon.Vector3(19,8.5,3.5);
         leftPaintingOnRightWall.rotation.y = Math.PI/2;
 
-        const rightPaintingOnBackWall = artifact.addNew("drum artifact painting", 4.75, 5.5, 6.3, 8.25, 9.5, 'click', scene);
+        const rightPaintingOnBackWall = artifact.addNew("basket artifact painting", 4.5, 5.5, 6.3, 8.25, 9.5, 'click', scene);
         // const rightPaintingOnBackWall = artifact.addNew("drum artifact painting", 5.25, 4.0, 6.3, 13.5, 'hover', scene);
 
         const drumPainting = new babylon.StandardMaterial('South American drum', scene);
         const drumFlatTexture = new babylon.Texture("images/southAmericanDrum.jpg",scene);
         drumPainting.diffuseTexture = drumFlatTexture;
-        rightPaintingOnBackWall.material = drumPainting;
+        leftPaintingOnBackWall.material = drumPainting;
+
+        const basketPainting = new babylon.StandardMaterial('South American basket', scene);
+        const basketFlatTexture = new babylon.Texture("images/basket.jpg",scene);
+        basketPainting.diffuseTexture = basketFlatTexture;
+        rightPaintingOnBackWall.material = basketPainting;
 
         const displayCasePainting = new babylon.StandardMaterial('South American display case', scene);
         const displayCaseTexture = new babylon.Texture("images/display_case.jpg",scene);
