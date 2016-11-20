@@ -33,13 +33,6 @@ class Scene{
         const knot = babylon.Mesh.CreateTorusKnot("knot", 2, 0.5, 128, 64, 2, 3, scene);
         knot.position = new babylon.Vector3(-10,3,5);
 
-        
-
-        const drumPainting = new babylon.StandardMaterial('South American drum', scene);
-        const drumFlatTexture = new babylon.Texture("images/southAmericanDrum.jpg",scene);
-        drumPainting.diffuseTexture = drumFlatTexture;
-        painting.material = drumPainting;
-
 
         var tiledGround = new babylon.Mesh.CreateGround("Tiled Ground", 40, 20, 1, scene);
 
@@ -78,6 +71,12 @@ class Scene{
         // const painting = babylon.Mesh.CreatePlane("painting", 5.0, 4.0, scene, false, babylon.Mesh.DOUBLESIDE);
         const painting = this.createWall("painting", 5.25, 4.0, scene);
         painting.position = new babylon.Vector3(6.3,10.5,9);
+
+        const drumPainting = new babylon.StandardMaterial('South American drum', scene);
+        const drumFlatTexture = new babylon.Texture("images/southAmericanDrum.jpg",scene);
+        drumPainting.diffuseTexture = drumFlatTexture;
+        painting.material = drumPainting;
+        
         this.prepareClick(painting, scene);
 
         // return the created scene
