@@ -27,16 +27,7 @@ window.addEventListener('DOMContentLoaded', function(){
 
         var box = babylon.Mesh.CreateBox("box", 2.0, scene, false, babylon.Mesh.DEFAULTSIDE);
         box.position = new babylon.Vector3(0,1,0);
-        var backWall = babylon.Mesh.CreatePlane("backWall", 6, scene, false, babylon.Mesh.DEFAULTSIDE);
-        backWall.position = new babylon.Vector3(0,3,3);
-
-        var rightWall = babylon.Mesh.CreatePlane("rightWall", 6, scene, false, babylon.Mesh.DEFAULTSIDE);
-        rightWall.position = new babylon.Vector3(3,3,0);
-        rightWall.rotation.y = Math.PI/2;
-
-        var leftWall = babylon.Mesh.CreatePlane("leftWall", 6, scene, false, babylon.Mesh.DEFAULTSIDE);
-        leftWall.position = new babylon.Vector3(-3,3,0);
-        leftWall.rotation.y = Math.PI/2;
+        
 
         // Part 1 : Creation of Tiled Ground
         // Parameters
@@ -88,6 +79,26 @@ window.addEventListener('DOMContentLoaded', function(){
             }
         }
 
+
+        //create walls
+         var backWall = babylon.Mesh.CreatePlane("backWall", 6, scene, false, babylon.Mesh.DEFAULTSIDE);
+        backWall.position = new babylon.Vector3(0,3,3);
+
+        var rightWall = babylon.Mesh.CreatePlane("rightWall", 6, scene, false, babylon.Mesh.DEFAULTSIDE);
+        rightWall.position = new babylon.Vector3(3,3,0);
+        rightWall.rotation.y = Math.PI/2;
+        
+
+        var leftWall = babylon.Mesh.CreatePlane("leftWall", 6, scene, false, babylon.Mesh.DEFAULTSIDE);
+        leftWall.position = new babylon.Vector3(-3,3,0);
+        leftWall.rotation.y = Math.PI/2;
+        //create wall material
+        var blueMaterial = new babylon.StandardMaterial("blueWalls", scene);
+        blueMaterial.diffuseColor = new babylon.Color3(0, 0.58, 0.86);
+
+        rightWall.material = blueMaterial;
+        leftWall.material = blueMaterial;
+        backWall.material = blueMaterial;
         // return the created scene
         return scene;
     }
