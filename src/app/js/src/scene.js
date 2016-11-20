@@ -83,14 +83,11 @@ class Scene{
 
         
         const clickableArtifact = artifact.addNew("paiting", 5.25, 4.0, 6.3, 10.5, 'click', scene);
-
-
+        
         return scene;
     }
     static createWall(title, width, height, scene){
         return babylon.MeshBuilder.CreatePlane(title, { width: width, height: height, sideOrientation: babylon.Mesh.DOUBLESIDE }, scene);
     }
-
- 
 }
 module.exports = Scene;
