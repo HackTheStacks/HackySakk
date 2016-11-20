@@ -1,3 +1,9 @@
-const name = 'HackySakk';
 
-setTimeout(() => console.log(`Welcome to ${name}`), 500);
+const websiteName = 'HackySakk';
+
+console.log(`Welcome to ${websiteName}`);
+
+
+
+
+
