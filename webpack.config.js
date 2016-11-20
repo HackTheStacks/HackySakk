@@ -2,7 +2,8 @@ module.exports = {
     entry: {
         'app': './src/app/js/src/app.js',
         'room': './src/app/js/src/room.js',
-        'scene': ['./src/app/js/src/scene.js']
+        'scene': ['./src/app/js/src/scene.js'],
+        'popup': ['./src/app/js/src/popup.js']
     },
     output: {
         path: './src/app/js/dist',
