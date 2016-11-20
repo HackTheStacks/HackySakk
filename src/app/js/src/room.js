@@ -98,9 +98,16 @@ window.addEventListener('DOMContentLoaded', function(){
         var blueMaterial = new babylon.StandardMaterial("blueWalls", scene);
         blueMaterial.diffuseColor = new babylon.Color3(0, 0.58, 0.86);
 
-        rightWall.material = blueMaterial;
-        leftWall.material = blueMaterial;
-        backWall.material = blueMaterial;
+        var textureWall = new babylon.StandardMaterial("texture1", scene);
+        textureWall.diffuseTexture = new babylon.Texture("images/museum-wall.jpg", scene);
+        textureWall.diffuseTexture.uOffset = 1.5;
+        textureWall.diffuseTexture.vOffset = 5.0;
+        textureWall.backFaceCulling = false;
+        // plane.material = material;
+
+        rightWall.material = textureWall;
+        leftWall.material = textureWall;
+        backWall.material = textureWall;
 
         // return the created scene
         return scene;
