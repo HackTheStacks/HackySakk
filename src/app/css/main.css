@@ -12,3 +12,8 @@ html, body {
         background: purple;
         touch-action: none;
 }
+
+.purple {
+        background: #33324d;
+        color: white;
+}
