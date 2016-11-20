@@ -28,7 +28,7 @@ class artifact {
         artifact.actionManager = new babylon.ActionManager(scene);
         artifact.actionManager.registerAction(new babylon.ExecuteCodeAction({ trigger: trigger, parameter: artifact},
             function () {
-                alert('you hovered! we are so proud of you');
+                alert('you did the thing! we are so proud of you');
             }));
     }
 

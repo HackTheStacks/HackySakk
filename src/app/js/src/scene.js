@@ -59,11 +59,9 @@ class Scene{
         leftWall.material = museumWallpaper;
         backWall.material = museumWallpaper;
 
-        const rightPaintingOnBackWall = this.createWall("drum artifact painting", 5.25, 4.0, scene);
         const leftPaintingOnBackWall = this.createWall("painting", 5.25, 4.0, scene);
         const leftPaintingOnRightWall = this.createWall("painting", 3.5, 4.0, scene);
 
-        rightPaintingOnBackWall.position = new babylon.Vector3(6.3,10.5,9);
         leftPaintingOnBackWall.position = new babylon.Vector3(-7,10.5,9);
 
         // x, y, z
@@ -76,13 +74,10 @@ class Scene{
         drumPainting.diffuseTexture = drumFlatTexture;
         rightPaintingOnBackWall.material = drumPainting;
 
-        this.prepareClick(rightPaintingOnBackWall, scene);
         
-        const hoverableArtifact = artifact.addNew("hoverable", 7, 12, -11, 12, 'hover', scene);
-
-
+        const hoverableArtifact = artifact.addNew("hoverable", 7, 5, -19.5, 12, 'hover', scene);
+        hoverableArtifact.rotation.y = Math.PI/2;
         
-        const clickableArtifact = artifact.addNew("paiting", 5.25, 4.0, 6.3, 10.5, 'click', scene);
         
         return scene;
     }
