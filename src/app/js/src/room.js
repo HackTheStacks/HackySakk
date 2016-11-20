@@ -15,7 +15,7 @@ window.addEventListener('DOMContentLoaded', function(){
         // create a FreeCamera, and set its position to (x:0, y:5, z:-10)
         // var camera = new babylon.FreeCamera('camera1', new babylon.Vector3(0, 5,-10), scene);
 
-	      var camera = new babylon.ArcRotateCamera("Camera", 3 * Math.PI / 2, Math.PI / 8, 50, babylon.Vector3.Zero(), scene);
+	   var camera = new babylon.ArcRotateCamera("Camera", 3 * Math.PI / 2, Math.PI / 8, 50, babylon.Vector3.Zero(), scene);
         // target the camera to scene origin
         camera.setTarget(babylon.Vector3.Zero());
 
@@ -23,19 +23,23 @@ window.addEventListener('DOMContentLoaded', function(){
         camera.attachControl(canvas, true);
 
         // create a basic light, aiming 0,1,0 - meaning, to the sky
-        var light = new babylon.HemisphericLight('light1', new babylon.Vector3(0,1,0), scene);
+        var light = new babylon.HemisphericLight('light1', new babylon.Vector3(3,1,0), scene);
+        var light3 = new babylon.HemisphericLight('light3', new babylon.Vector3(0,1,3), scene);
+        light.intensity = 0.7;
 
-        var box = babylon.Mesh.CreateBox("box", 6.0, scene, false, babylon.Mesh.BACKSIDE);
-        box.position = new babylon.Vector3(0,1,0);
+        //create box
+        var box = babylon.Mesh.CreateBox("box", 4.0, scene, false, babylon.Mesh.DEFAULTSIDE);
+        box.position = new babylon.Vector3(0,2,0);
 
         var knot = babylon.Mesh.CreateTorusKnot("knot", 2, 0.5, 128, 64, 2, 3, scene);
+        knot.position = new babylon.Vector3(5,3,5);
 
         // Part 1 : Creation of Tiled Ground
         // Parameters
-        var xmin = -9;
-        var zmin = -9;
-        var xmax =  9;
-        var zmax =  9;
+        var xmin = -10;
+        var zmin = -10;
+        var xmax =  10;
+        var zmax =  10;
         var precision = {
             "w" : 2,
             "h" : 2
@@ -80,15 +84,15 @@ window.addEventListener('DOMContentLoaded', function(){
 
 
         //create walls
-         var backWall = babylon.Mesh.CreatePlane("backWall", 18, scene, false, babylon.Mesh.DEFAULTSIDE);
-        backWall.position = new babylon.Vector3(0,9,9);
+         var backWall = babylon.Mesh.CreatePlane("backWall", 20, scene, false, babylon.Mesh.DOUBLESIDE);
+        backWall.position = new babylon.Vector3(0,10,10);
 
-        var rightWall = babylon.Mesh.CreatePlane("rightWall", 18, scene, false, babylon.Mesh.DEFAULTSIDE);
-        rightWall.position = new babylon.Vector3(9,9,0);
+        var rightWall = babylon.Mesh.CreatePlane("rightWall", 20, scene, false, babylon.Mesh.DOUBLESIDE);
+        rightWall.position = new babylon.Vector3(10,10,0);
         rightWall.rotation.y = Math.PI/2;
 
-        var leftWall = babylon.Mesh.CreatePlane("leftWall", 18, scene, false, babylon.Mesh.DEFAULTSIDE);
-        leftWall.position = new babylon.Vector3(-9,9,0);
+        var leftWall = babylon.Mesh.CreatePlane("leftWall", 20, scene, false, babylon.Mesh.DOUBLESIDE);
+        leftWall.position = new babylon.Vector3(-10,10,0);
         leftWall.rotation.y = Math.PI/2;
         //create wall material
         var blueMaterial = new babylon.StandardMaterial("blueWalls", scene);
