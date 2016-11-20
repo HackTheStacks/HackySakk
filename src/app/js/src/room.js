@@ -48,40 +48,19 @@ window.addEventListener('DOMContentLoaded', function(){
             'h' : 8,
             'w' : 8
         };
-        // Create the Tiled Ground
-        var tiledGround = new babylon.Mesh.CreateTiledGround("Tiled Ground", xmin, zmin, xmax, zmax, subdivisions, precision, scene);
 
-        // Part 2 : Create the multi material
-        // Create differents materials
-        var whiteMaterial = new babylon.StandardMaterial("White", scene);
-        whiteMaterial.diffuseColor = new babylon.Color3(1, 1, 1);
+        var tiledGround = new babylon.Mesh.CreateGround("Tiled Ground", 20, 20, 1, scene);
 
-        var blackMaterial = new babylon.StandardMaterial("Black", scene);
-        blackMaterial.diffuseColor = new babylon.Color3(0, 0, 0);
 
-        // Create Multi Material
-        var multimat = new babylon.MultiMaterial("multi", scene);
-        multimat.subMaterials.push(whiteMaterial);
-        multimat.subMaterials.push(blackMaterial);
-
-        // Part 3 : Apply the multi material
-        // Define multimat as material of the tiled ground
-        tiledGround.material = multimat;
-
-        // Needed variables to set subMeshes
-        var verticesCount = tiledGround.getTotalVertices();
-        var tileIndicesLength = tiledGround.getIndices().length / (subdivisions.w * subdivisions.h);
-
-        // Set subMeshes of the tiled ground
-        tiledGround.subMeshes = [];
-        var base = 0;
-        for (var row = 0; row < subdivisions.h; row++) {
-            for (var col = 0; col < subdivisions.w; col++) {
-                tiledGround.subMeshes.push(new babylon.SubMesh(row%2 ^ col%2, 0, verticesCount, base , tileIndicesLength, tiledGround));
-                base += tileIndicesLength;
-            }
-        }
-
+        // Part 2 : Create texture material for ground
+        console.log(__dirname);
+        var groundMaterial = new babylon.StandardMaterial('marble floor', scene);
+        var marbleTexture = new babylon.Texture("images/marble_texture.jpg",scene);
+        groundMaterial.diffuseTexture = marbleTexture;
+        // groundMaterial.diffuseTexture.uScale = 5.0;
+        // groundMaterial.diffuseTexture.vScale = 5.0;
+        tiledGround.material = groundMaterial;
+        tiledGround.backFaceCulling = false;
 
         //create walls
          var backWall = babylon.Mesh.CreatePlane("backWall", 20, scene, false, babylon.Mesh.DOUBLESIDE);
