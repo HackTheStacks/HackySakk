@@ -69,15 +69,18 @@ class Scene{
 
         //try to create click action
         // const painting = babylon.Mesh.CreatePlane("painting", 5.0, 4.0, scene, false, babylon.Mesh.DOUBLESIDE);
-        const painting = this.createWall("painting", 5.25, 4.0, scene);
-        painting.position = new babylon.Vector3(6.3,10.5,9);
+        const rightPaintingOnBackWall = this.createWall("drum artifact painting", 5.25, 4.0, scene);
+        const leftPaintingOnBackWall = this.createWall("painting", 5.25, 4.0, scene);
+
+        rightPaintingOnBackWall.position = new babylon.Vector3(6.3,10.5,9);
+        leftPaintingOnBackWall.position = new babylon.Vector3(-7,10.5,9);
 
         const drumPainting = new babylon.StandardMaterial('South American drum', scene);
         const drumFlatTexture = new babylon.Texture("images/southAmericanDrum.jpg",scene);
         drumPainting.diffuseTexture = drumFlatTexture;
-        painting.material = drumPainting;
-        
-        this.prepareClick(painting, scene);
+        rightPaintingOnBackWall.material = drumPainting;
+
+        this.prepareClick(rightPaintingOnBackWall, scene);
 
         // return the created scene
         return scene;
