@@ -6,30 +6,21 @@ module.exports = function(grunt) {
   // Load all Grunt tasks
   require('load-grunt-tasks')(grunt);
 
+  var webpack = require("webpack");
+  var webpackConfig = require("./webpack.config.js");
+
   grunt.initConfig({
     webpack: {
-      options: {
-        entry: './src/app.js',
-        output: {
-          filename: 'src/bundle.js'
-        },
-        module: {
-          loaders: [
-          {
-              test: /\.js$/,
-              exclude: /node_modules/,
-              loader: 'babel',
-              query: {
-                presets: ['es2015']
-              }
-          }],
-        },
-        watch: true 
+      options: webpackConfig,
+      "build-dev": {
+        devtool: "sourcemap",
+        debug: true
       }
     },
 
     watch:{
       files: 'app/**.*',
+      tasks: ['webpack']
     },
 
     connect: {
@@ -47,6 +38,6 @@ module.exports = function(grunt) {
 
   });
 
-grunt.registerTask('serve', ['connect','watch']);
+grunt.registerTask('serve', ['webpack:build-dev','connect','watch']);
 };
 
