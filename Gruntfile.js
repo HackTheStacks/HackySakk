@@ -26,11 +26,11 @@ module.exports = function(grunt) {
     connect: {
       server: {
         options:{
-          port: 9000,
+          port: 2016,
           base: 'src/',
           keepalive: true,
           open:{
-            target: 'http://localhost:9000/app/'
+            target: 'http://localhost:2016/app/'
           }
         }
       }
@@ -40,4 +40,3 @@ module.exports = function(grunt) {
 
 grunt.registerTask('serve', ['webpack:build-dev','connect','watch']);
 };
-
