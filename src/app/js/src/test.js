@@ -1,4 +1,4 @@
-import BABYLON from 'babylon';
+import BABYLON from 'babylonjs';
 
  window.addEventListener('DOMContentLoaded', function(){
             // get the canvas DOM element
@@ -24,14 +24,60 @@ import BABYLON from 'babylon';
                 // create a basic light, aiming 0,1,0 - meaning, to the sky
                 var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(0,1,0), scene);
 
-                // create a built-in "sphere" shape; its constructor takes 5 params: name, width, depth, subdivisions, scene
-                var sphere = BABYLON.Mesh.CreateSphere('sphere1', 16, 2, scene);
+                var box = BABYLON.Mesh.CreateBox("box", 2.0, scene, false, BABYLON.Mesh.DEFAULTSIDE);
 
-                // move the sphere upward 1/2 of its height
-                sphere.position.y = 1;
 
-                // create a built-in "ground" shape; its constructor takes the same 5 params as the sphere's one
-                var ground = BABYLON.Mesh.CreateGround('ground1', 6, 6, 2, scene);
+                // Tiled Ground Tutorial
+
+                // Part 1 : Creation of Tiled Ground
+                // Parameters
+                var xmin = -3;
+                var zmin = -3;
+                var xmax =  3;
+                var zmax =  3;
+                var precision = {
+                    "w" : 2,
+                    "h" : 2
+                };
+                var subdivisions = {
+                    'h' : 8,
+                    'w' : 8
+                };
+                // Create the Tiled Ground
+                var tiledGround = new BABYLON.Mesh.CreateTiledGround("Tiled Ground", xmin, zmin, xmax, zmax, subdivisions, precision, scene);
+
+
+                // Part 2 : Create the multi material
+                // Create differents materials
+                var whiteMaterial = new BABYLON.StandardMaterial("White", scene);
+                whiteMaterial.diffuseColor = new BABYLON.Color3(1, 1, 1);
+
+                var blackMaterial = new BABYLON.StandardMaterial("Black", scene);
+                blackMaterial.diffuseColor = new BABYLON.Color3(0, 0, 0);
+
+                // Create Multi Material
+                var multimat = new BABYLON.MultiMaterial("multi", scene);
+                multimat.subMaterials.push(whiteMaterial);
+                multimat.subMaterials.push(blackMaterial);
+
+
+                // Part 3 : Apply the multi material
+                // Define multimat as material of the tiled ground
+                tiledGround.material = multimat;
+
+                // Needed variables to set subMeshes
+                var verticesCount = tiledGround.getTotalVertices();
+                var tileIndicesLength = tiledGround.getIndices().length / (subdivisions.w * subdivisions.h);
+
+                // Set subMeshes of the tiled ground
+                tiledGround.subMeshes = [];
+                var base = 0;
+                for (var row = 0; row < subdivisions.h; row++) {
+                    for (var col = 0; col < subdivisions.w; col++) {
+                        tiledGround.subMeshes.push(new BABYLON.SubMesh(row%2 ^ col%2, 0, verticesCount, base , tileIndicesLength, tiledGround));
+                        base += tileIndicesLength;
+                    }
+                }
 
                 // return the created scene
                 return scene;
