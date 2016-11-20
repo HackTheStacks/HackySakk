@@ -28,7 +28,6 @@ window.addEventListener('DOMContentLoaded', function(){
         var plane = babylon.Mesh.CreatePlane("plane", 5.0, scene, false, babylon.Mesh.DEFAULTSIDE);
         plane.position = new babylon.Vector3(0,3,0);
 
-
         // Tiled Ground Tutorial
 
         // Part 1 : Creation of Tiled Ground
