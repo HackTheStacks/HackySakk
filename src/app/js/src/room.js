@@ -25,16 +25,17 @@ window.addEventListener('DOMContentLoaded', function(){
         // create a basic light, aiming 0,1,0 - meaning, to the sky
         var light = new babylon.HemisphericLight('light1', new babylon.Vector3(0,1,0), scene);
 
-        var box = babylon.Mesh.CreateBox("box", 2.0, scene, false, babylon.Mesh.DEFAULTSIDE);
+        var box = babylon.Mesh.CreateBox("box", 6.0, scene, false, babylon.Mesh.BACKSIDE);
         box.position = new babylon.Vector3(0,1,0);
-        
+
+        var knot = babylon.Mesh.CreateTorusKnot("knot", 2, 0.5, 128, 64, 2, 3, scene);
 
         // Part 1 : Creation of Tiled Ground
         // Parameters
-        var xmin = -3;
-        var zmin = -3;
-        var xmax =  3;
-        var zmax =  3;
+        var xmin = -9;
+        var zmin = -9;
+        var xmax =  9;
+        var zmax =  9;
         var precision = {
             "w" : 2,
             "h" : 2
@@ -45,7 +46,6 @@ window.addEventListener('DOMContentLoaded', function(){
         };
         // Create the Tiled Ground
         var tiledGround = new babylon.Mesh.CreateTiledGround("Tiled Ground", xmin, zmin, xmax, zmax, subdivisions, precision, scene);
-
 
         // Part 2 : Create the multi material
         // Create differents materials
@@ -59,7 +59,6 @@ window.addEventListener('DOMContentLoaded', function(){
         var multimat = new babylon.MultiMaterial("multi", scene);
         multimat.subMaterials.push(whiteMaterial);
         multimat.subMaterials.push(blackMaterial);
-
 
         // Part 3 : Apply the multi material
         // Define multimat as material of the tiled ground
@@ -81,16 +80,15 @@ window.addEventListener('DOMContentLoaded', function(){
 
 
         //create walls
-         var backWall = babylon.Mesh.CreatePlane("backWall", 6, scene, false, babylon.Mesh.DEFAULTSIDE);
-        backWall.position = new babylon.Vector3(0,3,3);
+         var backWall = babylon.Mesh.CreatePlane("backWall", 18, scene, false, babylon.Mesh.DEFAULTSIDE);
+        backWall.position = new babylon.Vector3(0,9,9);
 
-        var rightWall = babylon.Mesh.CreatePlane("rightWall", 6, scene, false, babylon.Mesh.DEFAULTSIDE);
-        rightWall.position = new babylon.Vector3(3,3,0);
+        var rightWall = babylon.Mesh.CreatePlane("rightWall", 18, scene, false, babylon.Mesh.DEFAULTSIDE);
+        rightWall.position = new babylon.Vector3(9,9,0);
         rightWall.rotation.y = Math.PI/2;
-        
 
-        var leftWall = babylon.Mesh.CreatePlane("leftWall", 6, scene, false, babylon.Mesh.DEFAULTSIDE);
-        leftWall.position = new babylon.Vector3(-3,3,0);
+        var leftWall = babylon.Mesh.CreatePlane("leftWall", 18, scene, false, babylon.Mesh.DEFAULTSIDE);
+        leftWall.position = new babylon.Vector3(-9,9,0);
         leftWall.rotation.y = Math.PI/2;
         //create wall material
         var blueMaterial = new babylon.StandardMaterial("blueWalls", scene);
@@ -99,6 +97,7 @@ window.addEventListener('DOMContentLoaded', function(){
         rightWall.material = blueMaterial;
         leftWall.material = blueMaterial;
         backWall.material = blueMaterial;
+
         // return the created scene
         return scene;
     }
