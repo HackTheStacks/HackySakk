@@ -68,20 +68,24 @@ class Scene{
         const drumPainting = new babylon.StandardMaterial('South American drum', scene);
         const drumFlatTexture = new babylon.Texture("images/southAmericanDrum.jpg",scene);
         drumPainting.diffuseTexture = drumFlatTexture;
-        leftPaintingOnBackWall.material = drumPainting;
-
-        const basketPainting = new babylon.StandardMaterial('South American basket', scene);
-        const basketFlatTexture = new babylon.Texture("images/basket.jpg",scene);
-        basketPainting.diffuseTexture = basketFlatTexture;
-        rightPaintingOnBackWall.material = basketPainting;
+        rightPaintingOnBackWall.material = drumPainting;
 
         const displayCasePainting = new babylon.StandardMaterial('South American display case', scene);
         const displayCaseTexture = new babylon.Texture("images/display_case.jpg",scene);
         displayCasePainting.diffuseTexture = displayCaseTexture;
         leftPaintingOnRightWall.material = displayCasePainting;
 
+        const stonePainting = new babylon.StandardMaterial('South American stone sculpture', scene);
+        const stoneTexture = new babylon.Texture("images/stone_sculpture.jpg",scene);
+        stonePainting.diffuseTexture = stoneTexture;
+        leftPaintingOnBackWall.material = stonePainting;
+
         const hoverableArtifact = artifact.addNew("hoverable", 5.0, 3.25, -19.5, 8.3, 3.5, 'hover', scene);
         hoverableArtifact.rotation.y = Math.PI/2;
+        const basketPainting = new babylon.StandardMaterial('South American basket', scene);
+        const basketFlatTexture = new babylon.Texture("images/basket.jpg",scene);
+        basketPainting.diffuseTexture = basketFlatTexture;
+        hoverableArtifact.material = basketPainting;
 
         return scene;
     }
