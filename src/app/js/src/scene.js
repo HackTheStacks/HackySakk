@@ -1,24 +1,13 @@
 import babylon from 'babylonjs';
-import Scene from './scene.js';
-
-
-window.addEventListener('DOMContentLoaded', function(){
-    // get the canvas DOM element
-    var canvas = document.getElementById('renderCanvas');
-
-    // load the 3D engine
-    var engine = new babylon.Engine(canvas, true);
-
-<<<<<<< 7d905e58905ce627470af59a70d23961e4a5b557
-    // createScene function that creates and return the scene
-    var createScene = function(){
-        // create a basic BJS Scene object
-        var scene = new babylon.Scene(engine);
+class Scene{
+        // createScene function that creates and return the scene
+    static createScene(engine, canvas){
+             var scene = new babylon.Scene(engine);
 
         // create a FreeCamera, and set its position to (x:0, y:5, z:-10)
         // var camera = new babylon.FreeCamera('camera1', new babylon.Vector3(0, 5,-10), scene);
 
-	   var camera = new babylon.ArcRotateCamera("Camera", 3 * Math.PI / 2, Math.PI / 8, 50, babylon.Vector3.Zero(), scene);
+       var camera = new babylon.ArcRotateCamera("Camera", 3 * Math.PI / 2, Math.PI / 8, 50, babylon.Vector3.Zero(), scene);
         // target the camera to scene origin
         camera.setTarget(babylon.Vector3.Zero());
 
@@ -77,20 +66,9 @@ window.addEventListener('DOMContentLoaded', function(){
         rightWall.material = textureWall;
         leftWall.material = textureWall;
         backWall.material = textureWall;
-=======
->>>>>>> refactored out scene functionality into scene.js
 
-
-    // call the createScene function
-    var scene = Scene.createScene(engine, canvas);
-
-    // run the render loop
-    engine.runRenderLoop(function(){
-        scene.render();
-    });
-
-    // the canvas/window resize event handler
-    window.addEventListener('resize', function(){
-        engine.resize();
-    });
-});
+        // return the created scene
+        return scene;
+    }
+}
+module.exports= Scene;
