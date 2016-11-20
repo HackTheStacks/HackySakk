@@ -25,7 +25,8 @@ import BABYLON from 'babylonjs';
                 var light = new BABYLON.HemisphericLight('light1', new BABYLON.Vector3(0,1,0), scene);
 
                 var box = BABYLON.Mesh.CreateBox("box", 2.0, scene, false, BABYLON.Mesh.DEFAULTSIDE);
-
+                var plane = BABYLON.Mesh.CreatePlane("plane", 5.0, scene, false, BABYLON.Mesh.DEFAULTSIDE);
+                plane.position = new BABYLON.Vector3(0,3,0.5);
 
                 // Tiled Ground Tutorial
 
