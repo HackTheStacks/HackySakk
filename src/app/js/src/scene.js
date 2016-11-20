@@ -2,12 +2,12 @@ import babylon from 'babylonjs';
 class Scene{
         // createScene function that creates and return the scene
     static createScene(engine, canvas){
-             var scene = new babylon.Scene(engine);
+        const scene = new babylon.Scene(engine);
 
         // create a FreeCamera, and set its position to (x:0, y:5, z:-10)
         // var camera = new babylon.FreeCamera('camera1', new babylon.Vector3(0, 5,-10), scene);
 
-       var camera = new babylon.ArcRotateCamera("Camera", 3 * Math.PI / 2, Math.PI / 8, 50, babylon.Vector3.Zero(), scene);
+        const camera = new babylon.ArcRotateCamera("Camera", 3 * Math.PI / 2, Math.PI / 8, 50, babylon.Vector3.Zero(), scene);
         // target the camera to scene origin
         camera.setTarget(babylon.Vector3.Zero());
 
@@ -15,15 +15,15 @@ class Scene{
         camera.attachControl(canvas, true);
 
         // create a basic light, aiming 0,1,0 - meaning, to the sky
-        var light = new babylon.HemisphericLight('light1', new babylon.Vector3(3,1,0), scene);
-        var light3 = new babylon.HemisphericLight('light3', new babylon.Vector3(0,1,3), scene);
+        const light = new babylon.HemisphericLight('light1', new babylon.Vector3(3,1,0), scene);
+        const light2 = new babylon.HemisphericLight('light2', new babylon.Vector3(0,1,3), scene);
         light.intensity = 0.7;
 
         //create box
-        var box = babylon.Mesh.CreateBox("box", 4.0, scene, false, babylon.Mesh.DEFAULTSIDE);
+        const box = babylon.Mesh.CreateBox("box", 4.0, scene, false, babylon.Mesh.DEFAULTSIDE);
         box.position = new babylon.Vector3(0,2,0);
 
-        var knot = babylon.Mesh.CreateTorusKnot("knot", 2, 0.5, 128, 64, 2, 3, scene);
+        const knot = babylon.Mesh.CreateTorusKnot("knot", 2, 0.5, 128, 64, 2, 3, scene);
         knot.position = new babylon.Vector3(5,3,5);
 
      
@@ -33,30 +33,25 @@ class Scene{
 
         // Part 2 : Create texture material for ground
         console.log(__dirname);
-        var groundMaterial = new babylon.StandardMaterial('marble floor', scene);
-        var marbleTexture = new babylon.Texture("images/marble_texture.jpg",scene);
+        const groundMaterial = new babylon.StandardMaterial('marble floor', scene);
+        const marbleTexture = new babylon.Texture("images/marble_texture.jpg",scene);
         groundMaterial.diffuseTexture = marbleTexture;
         tiledGround.material = groundMaterial;
         tiledGround.backFaceCulling = false;
 
         //create walls
-        //  var backWall = babylon.Mesh.CreatePlane("backWall", 40, scene, false, babylon.Mesh.DOUBLESIDE);
-        //{ size: number, width: number, height: number, sideOrientation: number, updatable: boolean, sourcePlane: Plane }
-         var backWall = babylon.MeshBuilder.CreatePlane("backWall", { width: 40, height: 20, sideOrientation: babylon.Mesh.DOUBLESIDE }, scene);
+        const backWall = this.createWall('backWall', 40, 20, scene);
         backWall.position = new babylon.Vector3(0,10,10);
 
-        var rightWall = babylon.Mesh.CreatePlane("rightWall", 20, scene, false, babylon.Mesh.DOUBLESIDE);
+        const rightWall = this.createWall("rightWall", 20,20,scene);
         rightWall.position = new babylon.Vector3(20,10,0);
         rightWall.rotation.y = Math.PI/2;
 
-        var leftWall = babylon.Mesh.CreatePlane("leftWall", 20, scene, false, babylon.Mesh.DOUBLESIDE);
+        const leftWall = this.createWall("leftWall", 20,20,scene);
         leftWall.position = new babylon.Vector3(-20,10,0);
         leftWall.rotation.y = Math.PI/2;
-        //create wall material
-        var blueMaterial = new babylon.StandardMaterial("blueWalls", scene);
-        blueMaterial.diffuseColor = new babylon.Color3(0, 0.58, 0.86);
 
-        var textureWall = new babylon.StandardMaterial("texture1", scene);
+        const textureWall = new babylon.StandardMaterial("texture1", scene);
         textureWall.diffuseTexture = new babylon.Texture("images/museum-wall.jpg", scene);
         textureWall.diffuseTexture.uOffset = 1.5;
         textureWall.diffuseTexture.vOffset = 5.0;
@@ -69,6 +64,9 @@ class Scene{
 
         // return the created scene
         return scene;
+    }
+    static createWall(title, width, height, scene){
+        return babylon.MeshBuilder.CreatePlane(title, { width: width, height: height, sideOrientation: babylon.Mesh.DOUBLESIDE }, scene);
     }
 }
 module.exports= Scene;
