@@ -26,6 +26,9 @@ class Scene{
         const knot = babylon.Mesh.CreateTorusKnot("knot", 2, 0.5, 128, 64, 2, 3, scene);
         knot.position = new babylon.Vector3(5,3,5);
 
+        // const painting = babylon.Mesh.CreatePlane("painting", 5.0, 4.0, scene, false, babylon.Mesh.DOUBLESIDE);
+        const painting = this.createWall("painting", 5.25, 4.0, scene);
+        painting.position = new babylon.Vector3(6.3,10.5,9);
 
 
         var tiledGround = new babylon.Mesh.CreateGround("Tiled Ground", 40, 20, 1, scene);
@@ -56,7 +59,6 @@ class Scene{
         textureWall.diffuseTexture.uOffset = 1.5;
         textureWall.diffuseTexture.vOffset = 5.0;
         textureWall.backFaceCulling = false;
-        // plane.material = material;
 
         rightWall.material = textureWall;
         leftWall.material = textureWall;
