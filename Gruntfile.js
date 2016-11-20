@@ -7,11 +7,15 @@ module.exports = function(grunt) {
   require('load-grunt-tasks')(grunt);
 
   grunt.initConfig({
+    watch:{
+      files: 'app/**.*'
+    },
+
     connect: {
       server: {
         options:{
           port: 9000,
-          base: 'app',
+          base: 'src/app/',
           keepalive: true,
           open:{
             target: 'http://localhost:9000'
@@ -22,4 +26,6 @@ module.exports = function(grunt) {
 
   });
 
+grunt.registerTask('serve', ['connect','watch']);
 };
+
