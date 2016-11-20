@@ -25,10 +25,10 @@ class Scene{
         const box = babylon.Mesh.CreateBox("box", 4.0, scene, false, babylon.Mesh.DEFAULTSIDE);
         box.position = new babylon.Vector3(8,2,-4);
 
-        const drumBox = new babylon.StandardMaterial('South American drum', scene);
-        const drumTexture = new babylon.Texture("images/southAmericanDrum.png",scene);
-        drumBox.diffuseTexture = drumTexture;
-        box.material = drumBox;
+        // const drumBox = new babylon.StandardMaterial('South American drum', scene);
+        // const drumTexture = new babylon.Texture("images/southAmericanDrum.png",scene);
+        // drumBox.diffuseTexture = drumTexture;
+        // box.material = drumBox;
 
         const knot = babylon.Mesh.CreateTorusKnot("knot", 2, 0.5, 128, 64, 2, 3, scene);
         knot.position = new babylon.Vector3(-10,3,5);
@@ -71,7 +71,7 @@ class Scene{
         // const painting = babylon.Mesh.CreatePlane("painting", 5.0, 4.0, scene, false, babylon.Mesh.DOUBLESIDE);
         const rightPaintingOnBackWall = this.createWall("drum artifact painting", 5.25, 4.0, scene);
         const leftPaintingOnBackWall = this.createWall("painting", 5.25, 4.0, scene);
-        const leftPaintingOnRightWall = this.createWall("painting", 3.5, 4.0, scene);
+        const leftPaintingOnRightWall = this.createWall("painting", 3.25, 4.0, scene);
 
         rightPaintingOnBackWall.position = new babylon.Vector3(6.3,10.5,9);
         leftPaintingOnBackWall.position = new babylon.Vector3(-7,10.5,9);
@@ -80,11 +80,15 @@ class Scene{
         leftPaintingOnRightWall.position = new babylon.Vector3(19,10.8,3.5);
         leftPaintingOnRightWall.rotation.y = Math.PI/2;
 
-
         const drumPainting = new babylon.StandardMaterial('South American drum', scene);
         const drumFlatTexture = new babylon.Texture("images/southAmericanDrum.jpg",scene);
         drumPainting.diffuseTexture = drumFlatTexture;
         rightPaintingOnBackWall.material = drumPainting;
+
+        const displayCasePainting = new babylon.StandardMaterial('South American display case', scene);
+        const displayCaseTexture = new babylon.Texture("images/display_case.jpg",scene);
+        displayCasePainting.diffuseTexture = displayCaseTexture;
+        leftPaintingOnRightWall.material = displayCasePainting;
 
         this.prepareClick(rightPaintingOnBackWall, scene);
 
