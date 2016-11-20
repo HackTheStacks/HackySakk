@@ -2,7 +2,8 @@ import babylon from 'babylonjs';
 
 class BasicScene{
 
-	static createRoom(canvas, scene){
+	static createBasicScene(canvas, engine){
+        const scene = new babylon.Scene(engine);
 		console.log('createRoom from basic scene');
         const camera = new babylon.ArcRotateCamera("Camera", 3 * Math.PI / 2, Math.PI / 8, 50, babylon.Vector3.Zero(), scene);
         camera.setTarget(babylon.Vector3.Zero());
@@ -14,20 +15,15 @@ class BasicScene{
         light.intensity = 0.7;
         light3.intensity = 0.5;
 
-        // const box = babylon.Mesh.CreateBox("box", 4.0, scene, false, babylon.Mesh.DEFAULTSIDE);
-        // box.position = new babylon.Vector3(8,2,-4);
-
-        // const knot = babylon.Mesh.CreateTorusKnot("knot", 2, 0.5, 128, 64, 2, 3, scene);
-        // knot.position = new babylon.Vector3(-10,3,5);
-
         var tiledGround = new babylon.Mesh.CreateGround("Tiled Ground", 40, 20, 1, scene);
         this.addTexture(tiledGround, scene, "textures/marble_texture2.jpg",0,0);
 
         const walls = this.createRoom(scene);
+        
+        for(let index = 0; index < walls.length; index++){
+            this.addTexture(walls[index], scene,'textures/museum-wall-no-bottom.jpg', 1.5, 5.0);
+        }
 
-        walls.forEach(function(wall){
-        	this.addTexture(wall, scene, 'textures/museum-wall-no-bottom.jpg',1.5, 5.0)
-        });
 
         return scene;
 	}
