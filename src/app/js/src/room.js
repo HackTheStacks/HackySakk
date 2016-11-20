@@ -34,6 +34,10 @@ window.addEventListener('DOMContentLoaded', function(){
         rightWall.position = new babylon.Vector3(3,3,0);
         rightWall.rotation.y = Math.PI/2;
 
+        var leftWall = babylon.Mesh.CreatePlane("leftWall", 6, scene, false, babylon.Mesh.DEFAULTSIDE);
+        leftWall.position = new babylon.Vector3(-3,3,0);
+        leftWall.rotation.y = Math.PI/2;
+
         // Part 1 : Creation of Tiled Ground
         // Parameters
         var xmin = -3;
