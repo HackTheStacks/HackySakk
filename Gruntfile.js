@@ -7,18 +7,39 @@ module.exports = function(grunt) {
   require('load-grunt-tasks')(grunt);
 
   grunt.initConfig({
+    webpack: {
+      options: {
+        entry: './src/app.js',
+        output: {
+          filename: 'src/bundle.js'
+        },
+        module: {
+          loaders: [
+          {
+              test: /\.js$/,
+              exclude: /node_modules/,
+              loader: 'babel',
+              query: {
+                presets: ['es2015']
+              }
+          }],
+        },
+        watch: true 
+      }
+    },
+
     watch:{
-      files: 'app/**.*'
+      files: 'app/**.*',
     },
 
     connect: {
       server: {
         options:{
           port: 9000,
-          base: 'src/app/',
+          base: 'src/',
           keepalive: true,
           open:{
-            target: 'http://localhost:9000'
+            target: 'http://localhost:9000/app/'
           }
         }
       }

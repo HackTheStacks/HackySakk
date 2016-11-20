@@ -1,3 +1,3 @@
 const name = 'HackySakk';
 
-setTimeout(() => alert(`Welcome to ${name}`), 500);
+setTimeout(() => console.log(`Welcome to ${name}`), 500);
